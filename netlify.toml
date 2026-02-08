@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[context.production.environment]
+# Example env var placeholders for Netlify (set in Netlify UI instead of committing secrets)
+  VITE_APP_NAME = "eEmployeeID"
+
+# This file is optional. Netlify will use the UI to set environment variables securely.

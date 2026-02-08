@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: dist
+
+# Note: This workflow builds the site and uploads the dist artifact.
+# It does NOT auto-deploy. Configure your preferred host (Netlify, Vercel, GitHub Pages) separately.
