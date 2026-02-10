@@ -4,9 +4,9 @@ import { Toaster } from "react-hot-toast"; // <--- Import this
 
 // Lazy Load Pages
 // Ensure these paths match your actual folder structure!
-const HomePage = lazy(() => import("./Pages/Home"));
-const FormPage = lazy(() => import("./Pages/Form"));
-const PreviewPage = lazy(() => import("./Pages/Preview"));
+const HomePage = lazy(() => import("./Pages/Home/index"));
+const FormPage = lazy(() => import("./Pages/Form/index"));
+const PreviewPage = lazy(() => import("./Pages/Preview/index"));
 
 function App() {
   return (
