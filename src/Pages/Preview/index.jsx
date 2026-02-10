@@ -267,13 +267,13 @@ function PreviewPage() {
           {/* BODY CONTENT */}
           <div style={{ padding: '6px 10px', position: 'relative' }}>
             
-            {/* Watermark Logo (Optional aesthetics to match reference) */}
+            {/* Watermark Logo (Front Side) */}
             <div style={{
               position: 'absolute',
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -35%)',
-              opacity: 0.12,
+              opacity: 0.08,
               pointerEvents: 'none',
               zIndex: 0,
               display: 'flex',
@@ -301,7 +301,7 @@ function PreviewPage() {
               
               {/* LEFT COL: Photo & Employee Signature */}
               <div style={{ width: '100px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                {/* Photo: taller so it spans NAME -> HRMS ID rows */}
+                {/* Photo: taller so it spans NAME -> HRMS ID rows - with rounded corners */}
                 <div style={{ 
                   width: '92px', 
                   height: '128px', 
@@ -311,13 +311,14 @@ function PreviewPage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  borderRadius: '8px'
                 }}>
                   {employee.photo ? (
                     <img 
                       src={employee.photo} 
                       alt="Emp" 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', imageRendering: 'auto' }} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', imageRendering: 'auto', borderRadius: '8px' }} 
                       crossOrigin="anonymous"
                     />
                   ) : (
@@ -373,9 +374,9 @@ function PreviewPage() {
           </div>
             {/* Absolute employee signature block (bottom-left) and office block (bottom-right) placed inside front card */}
             <div style={{ position: 'absolute', left: '16px', bottom: '14px', width: '92px', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
-                <div style={{ height: '28px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ height: '28px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'transparent', mixBlendMode: 'multiply' }}>
                   {employee.signature ? (
-                    <img src={employee.signature} alt="EmpSign" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} crossOrigin="anonymous" />
+                    <img src={employee.signature} alt="EmpSign" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', backgroundColor: 'transparent' }} crossOrigin="anonymous" />
                   ) : null}
                 </div>
                 <div style={{ fontSize: '9px', color: '#475569', textAlign: 'center', lineHeight: '1.1' }}>
@@ -402,6 +403,22 @@ function PreviewPage() {
 
         {/* ================= BACK SIDE ================= */}
         <div style={commonCardStyle} data-print-card>
+            {/* Watermark Logo - Page 2 Only */}
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              opacity: 0.08,
+              pointerEvents: 'none',
+              zIndex: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <img src={logoImg} alt="watermark" className="watermark-logo" style={{ height: 'auto' }} />
+            </div>
+            
             <div style={{ 
                 height: '100%', 
                 display: 'flex', 
@@ -417,14 +434,6 @@ function PreviewPage() {
                     <div style={{ ...labelStyle, width: '110px' }}>Address</div>
                     <div style={{ ...valueStyle, flex: 1, lineHeight: '1.4' }}>
                         : {employee.address}
-                    </div>
-                </div>
-
-                {/* Aadhar */}
-                <div style={{ display: 'flex', marginBottom: '15px' }}>
-                    <div style={{ ...labelStyle, width: '110px' }}>Aadhaar no</div>
-                    <div style={{ ...valueStyle, flex: 1 }}>
-                        : {employee.aadhaarNumber}
                     </div>
                 </div>
 

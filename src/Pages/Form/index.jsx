@@ -85,7 +85,6 @@ function FormPage() {
     hrmsId: '',
     address: '',
     mobileNumber: '',
-    aadhaarNumber: '',
     photo: null,
     signature: null
   });
@@ -111,7 +110,7 @@ function FormPage() {
       'department', // <--- NEW FIELD ADDED TO VALIDATION
       'designation', 'officeLocation', 
       'cfmsId', 'hrmsId', 
-      'address', 'mobileNumber', 'aadhaarNumber', 
+      'address', 'mobileNumber', 
       'photo', 'signature'
     ];
 
@@ -354,9 +353,9 @@ function FormPage() {
           </div>
         </div>
 
-        {/* 3. Contact & Aadhaar */}
+        {/* 3. Contact & Identification */}
         <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl border border-slate-200 shadow-sm">
-          <SectionHeader number="3" title="Contact & Identification" subtitle="Address, Mobile and Aadhaar" />
+          <SectionHeader number="3" title="Contact & Identification" subtitle="Address and Mobile Number" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             
             <div className="md:col-span-2">
@@ -378,16 +377,6 @@ function FormPage() {
                 type="tel"
                 placeholder="10-digit mobile number" 
                 maxLength={10}
-              />
-            </InputGroup>
-
-            <InputGroup label="Aadhaar Number" required>
-              <TextInput 
-                name="aadhaarNumber" 
-                value={formData.aadhaarNumber} 
-                onChange={handleInputChange} 
-                placeholder="12-digit Aadhaar Number" 
-                maxLength={12}
               />
             </InputGroup>
 
@@ -483,14 +472,17 @@ function FormPage() {
 
               {/* Upload Mode */}
               {signatureMode === 'upload' && (
-                <div className="border-2 border-dashed border-slate-300 rounded-xl p-4 sm:p-8 flex flex-col items-center justify-center text-center hover:bg-slate-50 transition-colors h-40 sm:h-48">
-                  <div className="bg-emerald-100 text-emerald-600 p-3 rounded-full mb-3"><Icons.Upload /></div>
-                  <p className="text-xs sm:text-sm text-slate-500 mb-4">Drag and drop or click to browse</p>
-                  
-                  <label className="cursor-pointer bg-white border border-slate-300 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold hover:bg-slate-50 transition-colors shadow-sm text-slate-700">
-                    Choose File
-                    <input type="file" className="hidden" accept="image/*" onChange={handleSignatureUpload} />
-                  </label>
+                <div>
+                  <div className="border-2 border-dashed border-slate-300 rounded-xl p-4 sm:p-8 flex flex-col items-center justify-center text-center hover:bg-slate-50 transition-colors h-40 sm:h-48">
+                    <div className="bg-emerald-100 text-emerald-600 p-3 rounded-full mb-3"><Icons.Upload /></div>
+                    <p className="text-xs sm:text-sm text-slate-500 mb-4">Drag and drop or click to browse</p>
+                    
+                    <label className="cursor-pointer bg-white border border-slate-300 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold hover:bg-slate-50 transition-colors shadow-sm text-slate-700">
+                      Choose File
+                      <input type="file" className="hidden" accept="image/*" onChange={handleSignatureUpload} />
+                    </label>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-3">💡 Tip: For best results, upload a PNG image with transparent background (no white box)</p>
                 </div>
               )}
             </div>
@@ -500,7 +492,7 @@ function FormPage() {
               <h4 className="absolute top-4 left-4 text-xs font-bold text-slate-400 uppercase">Signature Preview</h4>
               {formData.signature ? (
                 <div className="relative group w-full h-full flex items-center justify-center">
-                  <img src={formData.signature} alt="Signature" className="max-w-[80%] max-h-32 object-contain" />
+                  <img src={formData.signature} alt="Signature" className="max-w-[80%] max-h-32 object-contain" style={{ backgroundColor: 'transparent', mixBlendMode: 'multiply' }} />
                   <button 
                     onClick={removeSignature}
                     className="absolute -top-2 -right-2 bg-red-500 text-white p-1.5 rounded-full shadow-md hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-all"
@@ -523,7 +515,7 @@ function FormPage() {
       {/* Persistent Footer */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-3 sm:p-4 shadow-lg z-40">
         <div className="max-w-5xl mx-auto flex justify-between items-center gap-3">
-          <button className="text-xs sm:text-sm text-slate-500 font-semibold hover:text-slate-800 transition-colors">
+          <button onClick={() => navigate("/")} className="text-xs sm:text-sm text-slate-500 font-semibold hover:text-slate-800 transition-colors">
              ← Back
           </button>
           <motion.button 
