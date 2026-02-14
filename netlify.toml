@@ -6,4 +6,10 @@
 # Example env var placeholders for Netlify (set in Netlify UI instead of committing secrets)
   VITE_APP_NAME = "eEmployeeID"
 
+# SPA Redirect: Serve index.html for all routes (required for React Router)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 # This file is optional. Netlify will use the UI to set environment variables securely.

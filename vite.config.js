@@ -16,6 +16,12 @@ export default defineConfig(({ mode }) => ({
   },
   // Prevent exposing server overlay for HMR in production
   server: {
-    hmr: { overlay: mode === 'development' }
+    hmr: { overlay: mode === 'development' },
+    // Enable SPA fallback for client-side routing (handles page reloads in dev)
+    historyApiFallback: true
+  },
+  preview: {
+    // Also enable for preview mode
+    historyApiFallback: true
   }
 }))
