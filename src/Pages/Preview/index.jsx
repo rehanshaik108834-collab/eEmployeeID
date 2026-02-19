@@ -7,15 +7,9 @@ const styles = `
   .watermark-logo {
     width: 160px !important;
   }
-  .print-button {
-    display: inline-flex;
-  }
   @media print {
     .watermark-logo {
       width: 67px !important;
-    }
-    .print-button {
-      display: none !important;
     }
   }
 `;
@@ -354,7 +348,6 @@ function PreviewPage() {
 
       <div className="mt-8 flex flex-col sm:flex-row gap-4 w-full max-w-lg px-4 z-10">
         <button onClick={() => navigate("/form")} className="flex-1 px-6 py-3 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-colors shadow-sm text-base" disabled={isGenerating}>Edit Details</button>
-        <button onClick={() => window.print()} className="print-button flex-1 px-6 py-3 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-colors shadow-sm text-base">Print Card</button>
         <button onClick={downloadPDF} disabled={isGenerating} className="flex-1 px-6 py-3 rounded-lg bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2 text-base">
           {isGenerating ? "Generating PDF..." : "Download ID Card"}
         </button>
