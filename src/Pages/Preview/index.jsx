@@ -295,14 +295,11 @@ function PreviewPage() {
 
             </div>
             
-            {/* Signatures */}
+            {/* Employee Signature Area - Blank for Manual Signing */}
             <div style={{ position: 'absolute', left: '16px', bottom: '14px', width: '92px', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
-                <div style={{ height: '28px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', mixBlendMode: 'multiply' }}>
-                {employee.signature ? (
-                    <img src={employee.signature} alt="EmpSign" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} crossOrigin="anonymous" />
-                ) : null}
+                <div style={{ height: '28px', width: '100%', display: 'flex', alignItems: 'flex-end', justifyContent: 'center', borderBottom: '1px solid #94a3b8' }}>
                 </div>
-                <div style={{ fontSize: '9px', color: '#475569', textAlign: 'center', lineHeight: '1.1' }}>Signature of the Employee</div>
+                <div style={{ fontSize: '9px', color: '#475569', textAlign: 'center', lineHeight: '1.1', marginTop: '2px' }}>Employee Signature</div>
             </div>
 
             <div style={{ position: 'absolute', right: '16px', bottom: '14px', width: '120px', display: 'flex', flexDirection: 'column', alignItems: 'center', pointerEvents: 'none' }}>
